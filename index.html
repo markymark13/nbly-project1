@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Data Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    body {
+           
+        }
+        .grant-header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+          
+        }
+        .grant-info {
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 20px;
+        }
+
+.banner {
+    background-color: #065389;
+    order: 0;
+    position: relative;
+    background-image: url("neighborly-grants-portal-img1.jpg");
+    height: 40vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 60px;
+    color: white;
+    display: flex;
+    align-items: center; /* Center vertically */
+}
+.border-3 {
+    border-color: #2579bf !important;
+}
+* {
+  border-radius: 0 !important;
+}
+.navbar-brand
+{
+
+    padding-left: 20px;
+}
+.btn-primary
+{
+     background-color: #188AF4;
+    border: none;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-color: inherit; 
+    border-style: none;
+    border-bottom: 5px solid;
+    border-width: 0;
+    padding: 20px !important;
+}
+
+
+
+    </style>
+
+<body>
+    <!-- Header -->
+    <header class="p-3">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <img src="https://www.dch.gchexs.ga.gov/Applicant/Content/GADCH/Images/GAPillars-GoldDome-logo.png" height="100"></img>
+                <a class="navbar-brand" href="index.html">Governor's Office of<br>Planning and Budget</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Grants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="banner">
+            <div class="row">
+                <div class="col-8 p-4 my-auto" style="background-color: #188AF4;">
+                    <h1 class="text-uppercase">Welcome to the Grants Portal</h1>
+                    <p class="pt-3">Your comprehensive resource for discovering grant and loan opportunities offered by state agencies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Filters Section -->
+    <section class="container my-4">
+        <h4 class="text-center p-5"> The Grants Portal (a project by the Neighborly State Library) is your one destination to find all grants and loans offered on a competitive or first-come basis by Neighborly state agencies.</h4>
+        <div class="card bg-light">
+            <div class="card-body">
+                <form class="row g-3">
+                    <h4>Search</h4>
+                    <div class="col-md-4">
+                        <label for="nameSearch" class="form-label">Search by Grant Name</label>
+                        <input type="text" class="form-control" id="nameSearch" placeholder="Enter name or agency">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="grantNumberSearch" class="form-label">Search by Grant Number</label>
+                        <input type="text" class="form-control" id="grantNumberSearch" placeholder="Enter grant number">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="grantStatusSearch" class="form-label">Search by Grant Status</label>
+                        <select class="form-select" id="grantStatusSearch">
+                            <option value="">Choose status...</option>
+                            <option value="Open">Open</option>
+                            <option value="Closed">Closed</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 offset-md-9">
+                        <button type="button" class="btn btn-primary float-end" style="width:60%;" onclick="searchTable()">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Table Section -->
+    <section class="pb-3 container mt-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4>Grant Programs</h4>
+            <button class="btn btn-success" id="exportBtn"><i class="fas fa-file-export"></i> Export</button>
+        </div>
+        <table class="table table-bordered table-hover mt-3" id="grantTable">
+            <caption> <span id="totalRows" class="">Total Grants: 0</span><br>
+                <span id="filteredRows" class="">Filtered Grants: 0</span></caption>
+            <thead>
+                <tr>
+                    <th scope="col" onclick="sortTable(0)">Grant Number <i class="fas fa-sort"></i></th>
+                    <th scope="col" onclick="sortTable(1)">Grant Name <i class="fas fa-sort"></i></th>
+                    <th scope="col" onclick="sortTable(2)">Agency <i class="fas fa-sort"></i></th>
+                    <th scope="col" onclick="sortTable(3)">Status <i class="fas fa-sort"></i></th>
+                    <th scope="col" onclick="sortTable(4)">Posted Date <i class="fas fa-sort"></i></th>
+                    <th scope="col" onclick="sortTable(5)">Close Date <i class="fas fa-sort"></i></th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+        <!-- Pagination Controls -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center" id="paginationControls">
+                <!-- Pagination buttons will be dynamically generated here -->
+            </ul>
+        </nav>
+    </section>
+    <!-- Footer -->
+       <div class="mt-4 bg-primary text-white">
+        <div class="container py-5">
+            <div class="row">
+                <h3 class="fw-light">Governor's Office of Planning and Budget</h3>
+            </div>
+            <div class="row pt-4">
+                <div class="col-3">
+                    <strong class="text-uppercase">Contacts</strong><br>
+                    Program Director<br> Buster Posey - buster@cityof.gov
+                </div>
+                <div class="col-3">
+                    <strong class="text-uppercase">Phone</strong>
+                    <br>
+                    (555) 123-4562
+                    <p></p>
+                    <strong class="text-uppercase mt-3">Email</strong>
+                    <br>
+                    info@city.gov
+                </div>
+            </div>
+            <hr style="opacity:unset;" class="border-bottom border-1 border-white">
+            <div class="row">
+                <div class="col-12">
+                    Copyright © 2024-2025
+                    <br>
+                    An Official Site of <strong>Government</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Optional: jQuery for sorting and export functionality -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Optional: PapaParse for CSV Parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script>
+    const rowsPerPage = 30; // Number of rows per page
+    let currentPage = 1;
+    let grantData = [];
+
+
+    // Sample CSV data as string (you can load this from an external file as well)
+    const csvData = `Grant Number,Grant Name,Agency,Status,Posted Date,Close Date
+48240,Mental Health Awareness Program,Department of Housing,Closed,2024-08-31,2025-02-04
+79564,Youth Empowerment Initiative,State Health Department,Closed,2023-12-27,2024-12-14
+18880,Community Revitalization Grant,Department of Labor,Pending,2024-05-30,2025-03-17
+37380,Community Arts and Culture Grant,Department of Veterans Affairs,Open,2024-01-05,2024-06-05
+82630,Veteran Outreach Program Grant,Emergency Management Agency,Closed,2024-05-09,2025-05-03
+18854,Youth Arts Initiative,Department of Economic Development,Open,2024-02-14,2024-06-06
+84213,Disaster Preparedness Fund,Department of Youth Services,Closed,2024-04-28,2024-11-29
+81081,Child Safety Program Grant,Department of Housing,Open,2024-09-28,2025-01-12
+13607,Public Health Improvement Program,Department of Environmental Quality,Open,2024-08-22,2024-10-04
+37447,Youth Empowerment Initiative,State Education Agency,Closed,2023-12-22,2024-07-16
+72237,Sustainable Housing Development Grant,State Health Department,Pending,2024-09-05,2025-04-23
+21962,Green Spaces Development Grant,State Historical Society,Closed,2024-02-04,2024-11-06
+13984,Technology Innovation Fund,State Police Department,Pending,2024-06-23,2025-03-25
+72395,Education for All Initiative,Department of Environmental Quality,Closed,2023-12-16,2024-07-12
+17886,Local History Preservation Grant,Department of Technology,Closed,2024-03-10,2025-01-02
+56949,Childcare Accessibility Program,Department of Economic Development,Closed,2024-05-20,2024-08-30
+99654,Community Disaster Relief Grant,Department of Recreation,Closed,2024-07-07,2024-08-19
+39119,Youth Sports Development Grant,Emergency Management Agency,Pending,2024-04-03,2024-11-16
+31833,Local Food Systems Grant,State Arts Council,Open,2024-04-04,2024-08-03
+20066,Veteran Services Support Grant,Department of Youth Services,Closed,2023-10-30,2024-07-07
+58335,Outdoor Recreation Enhancement Grant,Department of Technology,Open,2024-04-16,2024-05-23
+69011,Arts in Education Grant,Emergency Management Agency,Closed,2024-03-10,2025-02-11
+13103,Mental Health Crisis Response Program,Department of Economic Development,Open,2024-01-18,2024-02-23
+61768,Public Transportation Enhancement Fund,Department of Recreation,Closed,2024-06-19,2024-10-07
+89392,Healthy Living Initiative,Department of Veterans Affairs,Open,2024-10-06,2025-06-22
+33320,Community Arts and Culture Grant,Emergency Management Agency,Closed,2024-02-12,2024-09-05
+15579,Veteran Services Support Grant,Department of Veterans Affairs,Closed,2024-09-06,2025-04-24
+38446,Technology Innovation Fund,Department of Technology,Pending,2024-04-17,2024-12-25
+66564,Farmers Market Support Grant,State Health Department,Pending,2023-11-29,2024-01-06
+72919,Access to Justice Grant,Department of Environmental Quality,Closed,2024-07-21,2025-02-13
+16242,Community Safety Grant,Department of Housing,Pending,2024-06-23,2024-12-15
+69518,Workforce Training and Development Fund,State Historical Society,Pending,2024-01-02,2024-04-14
+92111,Education Access for All,Emergency Management Agency,Pending,2024-04-12,2025-02-02
+51007,Public Safety Improvement Grant,Department of Community Affairs,Open,2024-03-22,2025-01-23
+93537,Sustainable Agriculture Grant,Department of Technology,Pending,2024-09-12,2025-04-04
+83533,Veteran Outreach Program Grant,Department of Technology,Pending,2024-06-24,2024-08-03
+32530,Local Emergency Preparedness Fund,Department of Agriculture,Pending,2024-05-22,2024-12-01
+59437,Neighborhood Watch Program Grant,Department of Child Services,Open,2024-02-03,2024-03-14
+33412,Community Wellness Program,Department of Veterans Affairs,Pending,2024-09-02,2024-10-20
+91956,Community Arts Enhancement Fund,Emergency Management Agency,Pending,2024-09-24,2024-10-30
+84259,Community Disaster Relief Grant,Department of Child Services,Open,2024-01-06,2024-04-12
+80623,Innovation in Education Grant,Department of Housing,Open,2023-12-09,2024-03-24
+91091,Education Access for All,State Arts Council,Pending,2023-11-06,2024-05-27
+86964,Community Revitalization Grant,Department of Labor,Pending,2023-11-02,2024-07-06
+59539,Transportation Safety Program,Department of Veterans Affairs,Pending,2024-09-30,2024-11-09
+55837,Child Safety Program Grant,Department of Environmental Quality,Open,2023-10-26,2024-04-10
+45607,Rural Broadband Access Fund,Department of Recreation,Pending,2024-05-30,2024-09-26
+80684,Youth Mentorship Program,State Health Department,Pending,2024-08-15,2025-01-11
+44263,Veteran Outreach Program Grant,State Historical Society,Pending,2024-08-27,2025-07-07
+73449,Digital Literacy Program Grant,Emergency Management Agency,Closed,2024-08-25,2024-11-12
+40605,Disaster Preparedness Fund,Department of Veterans Affairs,Pending,2024-04-10,2024-12-02
+32046,Community Emergency Response Fund,State Education Agency,Open,2023-11-18,2024-10-04
+69358,Small Business Recovery Grant,Department of Recreation,Open,2024-07-09,2025-06-01
+93386,Community Safety Grant,State Arts Council,Open,2024-08-11,2025-04-13
+14874,Youth Empowerment Initiative,Department of Youth Services,Pending,2023-12-09,2024-11-19
+39941,Farm to School Program Grant,State Police Department,Pending,2024-08-13,2024-12-31
+13198,Local Food Systems Grant,Department of Veterans Affairs,Closed,2024-01-02,2024-11-26
+86082,Local Business Support Grant,Department of Community Affairs,Open,2024-02-07,2024-04-17
+36262,Child Nutrition Program Grant,State Education Agency,Closed,2024-07-29,2025-05-15
+26112,Historic Preservation Fund,State Historical Society,Closed,2024-03-14,2024-11-17
+58533,Community Arts and Culture Grant,Department of Labor,Pending,2023-12-02,2024-09-21
+78804,Childcare Accessibility Program,Department of Recreation,Open,2023-12-13,2024-06-11
+93214,Community Wellness Program,Department of Community Affairs,Pending,2024-04-03,2025-02-17
+10793,Sustainable Housing Development Grant,Department of Community Affairs,Closed,2024-04-04,2024-05-10
+74100,Technology Innovation Fund,Department of Veterans Affairs,Pending,2024-02-15,2024-12-20
+40193,Community Arts Enhancement Fund,State Arts Council,Closed,2024-05-07,2024-10-19
+42821,Community Wellness Program,State Health Department,Closed,2024-02-25,2024-10-27
+10186,Water Quality Improvement Grant,Department of Veterans Affairs,Closed,2024-05-03,2025-02-25
+21756,Safe Routes to School Program,Department of Technology,Pending,2024-08-07,2024-09-23
+22090,Local Emergency Preparedness Fund,Emergency Management Agency,Open,2024-04-28,2025-03-17
+13996,Community Infrastructure Improvement Grant,Department of Youth Services,Open,2024-08-01,2025-02-19
+90287,Mental Health Awareness Program,Department of Technology,Open,2024-05-15,2024-12-12
+99030,Inclusive Playground Development Fund,Department of Agriculture,Open,2024-09-20,2025-01-23
+53313,Community Safety Grant,Emergency Management Agency,Closed,2024-04-12,2024-12-25
+19601,Mental Health Crisis Response Program,State Historical Society,Pending,2024-10-08,2025-08-11
+88051,Digital Literacy Program Grant,Department of Youth Services,Closed,2024-03-23,2024-12-17
+16257,Veteran Outreach Program Grant,Department of Environmental Quality,Closed,2024-07-05,2024-11-28
+20936,Public Arts Funding Program,Department of Housing,Open,2024-07-08,2025-02-01
+13503,Community Wellness Program,State Health Department,Pending,2024-06-23,2025-06-15
+31971,Youth Leadership Development Fund,Department of Technology,Open,2024-02-02,2024-05-03
+14131,Youth Arts Initiative,State Historical Society,Open,2024-05-27,2024-12-30
+98835,Healthy Communities Program Grant,Department of Labor,Closed,2023-12-25,2024-09-05
+82444,Community Revitalization Grant,Department of Child Services,Closed,2024-06-06,2025-05-18
+23571,Mental Health Awareness Program,Department of Child Services,Open,2024-06-30,2024-08-31
+39054,Rural Health Outreach Program,State Health Department,Closed,2023-11-20,2024-07-18
+37448,Bicycle Safety Initiative Grant,Department of Housing,Closed,2023-10-24,2024-07-16
+50139,Child Safety Program Grant,Department of Veterans Affairs,Open,2024-02-08,2025-01-12
+83068,Community Arts Enhancement Fund,Department of Agriculture,Closed,2024-03-13,2024-06-27
+76773,Rural Health Outreach Program,State Historical Society,Closed,2024-03-23,2024-05-27
+99182,Innovation in Education Grant,State Police Department,Closed,2024-06-07,2025-03-08
+66041,Tech for Kids Program,Department of Housing,Pending,2024-01-30,2025-01-28
+30337,Public Library Improvement Fund,Department of Community Affairs,Pending,2024-07-31,2024-11-06
+46294,Youth Employment Program Grant,Department of Community Affairs,Pending,2024-05-19,2024-07-08
+27603,Public Arts Funding Program,State Arts Council,Open,2024-01-24,2024-07-19
+95639,Neighborhood Watch Program Grant,State Arts Council,Open,2024-08-20,2025-05-25
+11056,Inclusive Playground Development Fund,Department of Labor,Closed,2024-07-18,2025-03-09
+41166,Youth Empowerment Initiative,Department of Youth Services,Pending,2024-03-16,2024-05-09
+98087,Education Access for All,Department of Child Services,Open,2024-04-06,2024-12-04
+88460,Local Emergency Preparedness Fund,State Health Department,Open,2024-09-25,2025-05-22
+68220,Veteran Outreach Program Grant,Department of Child Services,Closed,2024-06-10,2024-11-08
+88813,Community Emergency Response Fund,Department of Environmental Quality,Open,2024-02-17,2024-10-12
+82096,Education for All Initiative,State Education Agency,Pending,2024-05-15,2024-09-25
+49907,Farmers Market Support Grant,State Arts Council,Closed,2024-09-15,2025-02-08
+78094,Child Nutrition Program Grant,Department of Agriculture,Open,2023-10-24,2024-05-22
+34466,Veteran Outreach Program Grant,State Police Department,Open,2023-11-16,2024-07-09
+61955,Outdoor Recreation Enhancement Grant,State Police Department,Open,2024-08-11,2024-11-07
+47872,Water Quality Improvement Grant,Department of Labor,Closed,2024-08-24,2025-06-19
+78400,Education for All Initiative,Department of Recreation,Open,2023-10-28,2024-06-14
+51549,Local History Preservation Grant,Department of Recreation,Pending,2024-01-31,2024-06-02
+16686,Inclusive Playground Development Fund,Department of Economic Development,Open,2024-04-26,2025-03-18
+68179,Digital Literacy Program Grant,Department of Economic Development,Closed,2024-02-13,2024-07-12
+24009,Innovation in Education Grant,Department of Technology,Closed,2024-06-19,2024-07-31
+51648,Local Emergency Preparedness Fund,State Police Department,Pending,2024-09-05,2025-03-12
+63243,Public Transportation Enhancement Fund,Department of Economic Development,Open,2024-08-14,2024-11-20
+30089,Neighborhood Watch Program Grant,Department of Economic Development,Closed,2024-08-17,2025-01-03
+29368,Public Arts Funding Program,State Health Department,Closed,2024-04-29,2024-10-31
+36758,Rural Broadband Access Fund,State Police Department,Closed,2024-10-14,2024-12-08
+60287,Transportation Safety Program,Department of Environmental Quality,Pending,2024-07-29,2025-04-16
+52038,Water Quality Improvement Grant,Department of Agriculture,Pending,2023-11-04,2023-12-14
+15877,Public Health Improvement Program,Department of Veterans Affairs,Closed,2024-08-19,2025-07-26
+33421,Child Nutrition Program Grant,Department of Veterans Affairs,Pending,2024-10-11,2025-03-02
+41214,Education for All Initiative,State Arts Council,Closed,2024-02-06,2024-07-04
+87142,Public Library Improvement Fund,Department of Environmental Quality,Open,2024-04-28,2025-02-02
+10163,Environmental Restoration Fund,Department of Community Affairs,Closed,2024-10-17,2025-08-28
+50524,Environmental Restoration Fund,Department of Child Services,Closed,2024-03-05,2024-05-06
+67735,Healthy Communities Program Grant,Department of Child Services,Closed,2024-09-02,2025-07-17
+25691,Community Wellness Program,Department of Recreation,Pending,2024-03-01,2024-11-20
+30369,Local History Preservation Grant,State Education Agency,Closed,2024-07-09,2025-01-18
+90183,Smart Cities Initiative Grant,State Police Department,Pending,2024-01-22,2024-04-07
+54597,Access to Justice Grant,State Health Department,Closed,2024-01-03,2024-12-19
+25489,Smart Cities Initiative Grant,Department of Community Affairs,Pending,2024-09-04,2025-08-18
+73731,Public Health Improvement Program,State Arts Council,Open,2024-03-19,2024-09-28
+42457,Technology in Schools Fund,Department of Youth Services,Open,2024-05-26,2024-07-25
+76449,Local Food Systems Grant,Department of Technology,Pending,2024-02-03,2024-08-22
+98065,Sustainable Agriculture Grant,Emergency Management Agency,Pending,2023-12-03,2024-09-24
+11195,Youth Arts Initiative,Department of Agriculture,Open,2024-01-31,2025-01-29
+19656,Education for All Initiative,Department of Veterans Affairs,Pending,2024-01-14,2024-03-09
+79885,Technology Innovation Fund,Department of Community Affairs,Open,2023-12-04,2024-07-22
+66617,Community Wellness Program,Department of Recreation,Closed,2023-11-24,2024-07-24
+87682,Childcare Accessibility Program,State Police Department,Open,2024-04-23,2024-07-21
+98889,Disaster Preparedness Fund,Department of Child Services,Pending,2023-10-24,2024-09-13
+53306,Workforce Training and Development Fund,State Police Department,Open,2024-09-18,2025-06-05
+73365,Public Safety Awareness Program,Department of Environmental Quality,Pending,2024-02-07,2025-01-16
+19501,Inclusive Playground Development Fund,Department of Community Affairs,Pending,2024-09-16,2025-01-11
+44321,Environmental Restoration Fund,State Education Agency,Pending,2024-09-02,2025-07-27
+99382,Technology in Schools Fund,Emergency Management Agency,Closed,2024-02-06,2024-10-13
+53180,Community Emergency Response Fund,State Police Department,Pending,2024-06-28,2024-11-30
+54721,Safe Routes to School Program,State Education Agency,Pending,2023-10-24,2024-06-06
+49584,Community Health Initiative,State Education Agency,Closed,2023-12-15,2024-05-26
+20873,Innovation in Education Grant,Department of Child Services,Closed,2024-04-13,2024-05-27
+56871,Community Arts and Culture Grant,Department of Youth Services,Open,2024-09-26,2025-07-20
+63963,Childcare Accessibility Program,State Health Department,Pending,2024-08-25,2025-01-11
+84086,Public Library Improvement Fund,State Education Agency,Closed,2024-02-08,2024-12-04
+68503,Environmental Restoration Fund,State Historical Society,Closed,2023-12-31,2024-12-29
+27073,Green Spaces Development Grant,State Arts Council,Closed,2024-02-25,2024-10-31
+55176,Rural Broadband Access Fund,Department of Child Services,Pending,2024-07-13,2025-02-05
+71110,Childcare Accessibility Program,Department of Youth Services,Open,2024-03-24,2024-06-08
+45322,Green Spaces Development Grant,State Health Department,Pending,2024-05-14,2025-03-08
+96477,Child Safety Program Grant,Department of Veterans Affairs,Closed,2024-09-28,2024-11-14
+28705,Access to Justice Grant,Department of Community Affairs,Pending,2024-04-03,2024-09-18
+55663,Outdoor Recreation Enhancement Grant,Department of Community Affairs,Closed,2024-10-21,2025-04-21
+24615,Disaster Preparedness Fund,Department of Veterans Affairs,Closed,2024-02-27,2024-10-30
+15245,Sustainable Housing Development Grant,Department of Youth Services,Open,2024-03-11,2024-11-20
+58316,Public Health Improvement Program,State Arts Council,Pending,2024-03-12,2024-09-21
+37387,Youth Mentorship Program,State Arts Council,Pending,2024-08-02,2025-06-25
+70825,Community Arts Enhancement Fund,Department of Labor,Open,2024-08-20,2025-06-07
+13974,Green Energy Initiative Grant,Department of Recreation,Pending,2024-09-22,2025-07-31
+59376,Education for All Initiative,Department of Child Services,Open,2024-04-13,2024-12-16
+62734,Innovation in Education Grant,Department of Environmental Quality,Open,2024-05-14,2025-05-13
+82075,Innovation in Education Grant,Department of Economic Development,Closed,2023-12-14,2024-02-08
+99121,Environmental Restoration Fund,Emergency Management Agency,Open,2024-06-01,2024-07-28
+17112,Community Wellness Program,State Health Department,Open,2023-11-04,2024-03-29
+94798,Smart Cities Initiative Grant,Department of Labor,Open,2023-12-12,2024-07-29
+32740,Local Food Systems Grant,Department of Community Affairs,Pending,2024-06-16,2024-11-23
+87034,Green Energy Initiative Grant,Department of Youth Services,Open,2024-03-20,2024-11-13
+46900,Disaster Preparedness Fund,Department of Agriculture,Pending,2024-07-04,2024-11-12
+93634,Small Business Recovery Grant,Department of Youth Services,Open,2024-08-24,2025-03-03
+96511,Public Health Improvement Program,Department of Environmental Quality,Closed,2023-12-12,2024-02-06
+36091,Education Access for All,Department of Labor,Closed,2024-04-18,2025-03-14
+35125,Youth Empowerment Initiative,Department of Environmental Quality,Open,2024-10-20,2025-04-03
+24436,Bicycle Safety Initiative Grant,State Arts Council,Closed,2024-08-16,2024-10-06
+25999,Local Business Support Grant,State Arts Council,Closed,2024-05-12,2025-04-12
+44536,Veteran Outreach Program Grant,State Arts Council,Pending,2024-09-28,2025-05-22
+94257,Senior Citizen Engagement Fund,State Education Agency,Open,2024-03-18,2024-12-07
+64307,Child Safety Program Grant,State Education Agency,Closed,2024-03-09,2024-08-28
+47802,Education for All Initiative,Department of Youth Services,Open,2024-07-16,2025-03-06
+95794,Community Disaster Relief Grant,Department of Recreation,Open,2024-10-11,2025-04-26
+52779,Education for All Initiative,Emergency Management Agency,Pending,2024-09-04,2024-10-13
+13431,Access to Justice Grant,Department of Recreation,Open,2024-02-05,2024-04-08
+57849,Public Health Improvement Program,State Police Department,Closed,2024-06-29,2024-10-12
+73028,Public Health Improvement Program,Department of Youth Services,Closed,2024-06-20,2025-04-29
+90887,Historic Preservation Fund,Department of Veterans Affairs,Pending,2023-12-19,2024-02-08
+73087,Arts in Education Grant,State Arts Council,Open,2024-02-21,2024-10-30
+91032,Mental Health Crisis Response Program,State Police Department,Closed,2024-10-11,2025-02-05
+62536,Healthy Living Initiative,State Police Department,Pending,2024-01-10,2024-07-22
+47973,Technology Innovation Fund,State Police Department,Pending,2024-05-22,2024-09-16
+87819,Cultural Heritage Preservation Grant,Department of Agriculture,Closed,2024-09-11,2025-01-21
+64574,Civic Engagement Project,Department of Economic Development,Open,2024-08-01,2024-12-20
+95526,Green Energy Initiative Grant,State Health Department,Pending,2024-09-28,2025-01-17
+92452,Water Quality Improvement Grant,State Historical Society,Open,2024-02-12,2024-08-24
+
+`; // Add more CSV rows here
+
+    // Initialize total row count
+    let totalRowCount = 0;
+
+
+
+    // Parse CSV data using PapaParse
+    Papa.parse(csvData, {
+        header: true,
+        complete: function(results) {
+            // Store total row count
+            totalRowCount = results.data.length - 1;
+            grantData = results.data;
+            renderTable();
+            renderPagination();
+            updateRowCount(); // Update the total row count display
+        }
+    });
+
+    // Function to update the row count display
+    function updateRowCount() {
+        document.getElementById('totalRows').textContent = `Total Rows: ${totalRowCount}`;
+    }
+
+
+    // Render the table with pagination
+    function renderTable() {
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = Math.min(startIndex + rowsPerPage, grantData.length);
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = '';
+
+        for (let i = startIndex; i < endIndex; i++) {
+            const row = grantData[i];
+
+            // Check if the row is fully populated (i.e., no undefined or empty values)
+            if (
+                row['Grant Number'] &&
+                row['Grant Name'] &&
+                row['Agency'] &&
+                row['Status'] &&
+                row['Posted Date'] &&
+                row['Close Date']
+            ) {
+                // Set the status badge based on the status value
+                let statusBadge = '';
+                if (row['Status'] === 'Open') {
+                    statusBadge = `<span class="fw-bold text-success">${row['Status']}</span>`;
+                } else if (row['Status'] === 'Pending') {
+                    statusBadge = `<span class="fw-bold text-warning">${row['Status']}</span>`;
+                } else if (row['Status'] === 'Closed') {
+                    statusBadge = `<span class="fw-bold text-danger">${row['Status']}</span>`;
+                }
+
+                const newRow = `<tr>
+                <td>${row['Grant Number']}</td>
+                <td class=""><a class="link-dark" href="grantDetails.html?grantID=${row['Grant Number']}&grantName=${encodeURIComponent(row['Grant Name'])}&agency=${encodeURIComponent(row['Agency'])}&postedDate=${row['Posted Date']}&closeDate=${row['Close Date']}&status=${row['Status']}">${row['Grant Name']}</a></td>
+                <td>${row['Agency']}</td>
+                <td>${statusBadge}</td>
+                <td>${row['Posted Date']}</td>
+                <td>${row['Close Date']}</td>
+            </tr>`;
+                tableBody.innerHTML += newRow;
+            }
+        }
+    }
+
+    // Render pagination controls
+    function renderPagination() {
+        const totalPages = Math.ceil(grantData.length / rowsPerPage);
+        const paginationControls = document.getElementById('paginationControls');
+        paginationControls.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
+                </li>`;
+            paginationControls.innerHTML += pageButton;
+        }
+    }
+
+    // Function to change pages
+    function goToPage(page) {
+        currentPage = page;
+        renderTable();
+        renderPagination();
+    }
+
+
+    // Search function for filtering the table
+    function searchTable() {
+        var nameInput = document.getElementById('nameSearch').value.toLowerCase();
+        var grantNumberInput = document.getElementById('grantNumberSearch').value.toLowerCase();
+        var statusInput = document.getElementById('grantStatusSearch').value.toLowerCase();
+        var table = document.getElementById('grantTable');
+        var rows = table.getElementsByTagName('tr');
+
+        let filteredCount = 0;
+
+        for (var i = 1; i < rows.length; i++) {
+            var grantNumberCell = rows[i].getElementsByTagName('td')[0];
+            var grantNameCell = rows[i].getElementsByTagName('td')[1];
+            var agencyCell = rows[i].getElementsByTagName('td')[2];
+            var statusCell = rows[i].getElementsByTagName('td')[3];
+
+            if (!grantNumberCell || !grantNameCell || !agencyCell || !statusCell) {
+                continue; // Skip if any cell is not found
+            }
+
+            var grantNumberValue = grantNumberCell.textContent.toLowerCase();
+            var grantNameValue = grantNameCell.textContent.toLowerCase();
+            var agencyValue = agencyCell.textContent.toLowerCase();
+            var statusValue = statusCell.textContent.toLowerCase();
+
+            // Match based on inputs (LIKE or contains)
+            var matchesKeyword = grantNameValue.includes(nameInput) || agencyValue.includes(nameInput);
+            var matchesGrantNumber = grantNumberValue.includes(grantNumberInput);
+            var matchesStatus = statusInput === "" || statusValue.includes(statusInput);
+
+            // If all match, display the row; otherwise, hide it
+            if (matchesKeyword && matchesGrantNumber && matchesStatus) {
+                rows[i].style.display = "";
+                filteredCount++;
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+        // Update the counts
+        document.getElementById('filteredRows').textContent = `Filtered Rows: ${filteredCount}`;
+    }
+
+    // Sorting function
+    function sortTable(columnIndex) {
+        var table = document.getElementById("grantTable");
+        var rows = table.rows;
+        var switching = true;
+        var shouldSwitch;
+        var direction = "asc";
+        var switchCount = 0;
+        while (switching) {
+            switching = false;
+            var i;
+            for (i = 1; i < rows.length - 1; i++) {
+                shouldSwitch = false;
+                var x = rows[i].getElementsByTagName("TD")[columnIndex];
+                var y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+                if (direction === "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (direction === "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchCount++;
+            } else {
+                if (switchCount === 0 && direction === "asc") {
+                    direction = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+
+
+
+    // Export function
+    document.getElementById("exportBtn").addEventListener("click", function() {
+        var table = document.getElementById("grantTable");
+        var rows = table.getElementsByTagName("tr");
+        var csvContent = "";
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            for (var j = 0; j < cells.length; j++) {
+                csvContent += cells[j].innerText + ",";
+            }
+            csvContent += "\n";
+        }
+        var downloadLink = document.createElement("a");
+        var blob = new Blob([csvContent], { type: 'text/csv' });
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = "grant_data.csv";
+        downloadLink.click();
+    });
+    </script>
+</body>
+
+</html>

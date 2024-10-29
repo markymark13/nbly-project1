@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Detail Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+
+     
+        }
+
+
+.banner {
+    background-color: #065389;
+    order: 0;
+    position: relative;
+    background-image: url("neighborly-grants-portal-img1.jpg");
+    height: 40vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 60px;
+    color: white;
+    display: flex;
+    align-items: center; /* Center vertically */
+}
+* {
+  border-radius: 0 !important;
+  
+}
+.navbar-brand
+{
+
+    padding-left: 20px;
+}
+.btn-primary
+{
+    background-color: #188AF4;
+    border: none;
+}
+.text-primary
+{
+
+    color: #188AF4 !important;
+}
+.bg-primary
+{
+
+     background-color: #188AF4 !important;
+}
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #2579bf;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="p-3">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <img src="https://www.dch.gchexs.ga.gov/Applicant/Content/GADCH/Images/GAPillars-GoldDome-logo.png" height="100"></img>
+                <a class="navbar-brand" href="index.html">Governor's Office of<br>Planning and Budget</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Grants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="banner">
+            <div class="row">
+                <div class="col-8 p-4 my-auto" style="background-color: #188AF4;">
+                    <span id="grantStatus"></span>
+                    <h1 class="text-uppercase" id="grantName">Grant A</h1>
+                    <h5 id="grantNumber">Grant Number: <span id="grantID">12345</span></h5>
+                    <p class="pt-3">This grant supports local organizations in their efforts to enhance healthcare access and wellness programs for underserved populations across the state. This grant provides funding for projects that improve community health, especially in rural areas, through preventive care initiatives. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html" class="link-dark">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html" class="link-dark">Grant Search</a></li>
+                <li class="breadcrumb-item active" aria-current="page" id="grantName_bc">Grant A</li>
+            </ol>
+        </nav>
+        <div class="row mt-5">
+            <h4 class="alert-heading">Important Grant Information</h4>
+            <div class="col-6">
+                <div class="bd-callout bg-light">
+                    <strong class="text-uppercase text-primary">Dates & Funding</strong>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-light"> <strong>Agency</strong><br> <span id="agencyName">Agency X</span></li>
+                        <li class="list-group-item bg-light"><strong>Posted Date</strong><br> <span id="postedDate">2024-01-01</span></li>
+                        <li class="list-group-item bg-light"><strong>Close Date</strong><br> <span id="closeDate">2024-12-31</span></li>
+                        <li class="list-group-item bg-light"><strong>Funding Amount</strong><br> Up to $50,000</li>
+                        <li class="list-group-item bg-light"><strong>Use of Funds</strong><br> Funds can be used for project materials, salaries for project staff, and operational costs directly related to the project.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="bd-callout bg-light">
+                    <strong class="text-uppercase text-primary">How to Apply</strong>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-light"><strong>Eligibility Criteria</strong><br> Applicants must be a registered non-profit organization, local government, or community group with a project that benefits the community</li>
+                        <li class="list-group-item bg-light"><strong>Application Process</strong><br> Applications must be submitted online through our portal. Include a project proposal, budget outline, and timeline.</li>
+                        <li class="list-group-item bg-light"><strong>Required Documents</strong><br> 1) IRS tax-exempt status letter<br> 2) List of board members<br> 3) Letters of support from community members.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a class="btn btn-primary text-uppercase" style="width:100%;" href="https://portal.neighborlysoftware.com/demo/participant">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-bold" style="border-right: 1px solid #2579bf;" href="#">Subscribe for Email Alerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-bold" style="border-right: 1px solid #2579bf;" href="#">Documents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-bold" style="border-right: 1px solid #2579bf;" href="#">Policy Requirements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-bold" href="#">Quarterly Reporting</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <h4 class="alert-heading">About This Grant</h4>
+                <p><span id="grantName_text"></span> Grant is designed to promote better healthcare access for underserved communities, with a special focus on rural areas that face challenges such as provider shortages and limited healthcare facilities. This grant is intended to empower local health organizations, non-profits, and community groups to implement innovative solutions that address critical health disparities and create sustainable improvements in community wellness.</p>
+                <p>Eligible projects might include mobile health clinics, community health education programs, mental health services, or preventive care initiatives that target chronic diseases like diabetes, heart disease, and hypertension. Projects funded by this grant must demonstrate a clear benefit to the community and show how they plan to create lasting, positive health outcomes.</p>
+                <p>Organizations that receive funding will be expected to report on the measurable impact of their programs, including the number of people served, improvement in health outcomes, and how the project addresses the specific needs of the community. The grant may also require collaboration with local healthcare providers, hospitals, or government agencies to maximize the effectiveness of the funded programs.</p>
+                <p>Applications for the <span id="grantName_text2"></span> must include a detailed budget proposal, timeline, and a clear explanation of how the project aligns with the broader goals of enhancing health equity across the state. The grant offers funding amounts ranging from $10,000 to $100,000, depending on the scope and potential impact of the project.</p>
+            </div>
+            <div class="row mt-5">
+                <div class="col-8">
+                    <h4 class="alert-heading">Contacts</h4>
+                    <p><strong>Program Director</strong><br> Buster Posey - buster@cityof.gov</p>
+                    <p><strong>Sr. Grant Director</strong><br> Avril Lavigne - avril.lavigne@cityof.gov</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4 bg-primary text-white">
+        <div class="container py-5">
+            <div class="row">
+                <h3 class="fw-light">Governor's Office of Planning and Budget</h3>
+            </div>
+            <div class="row pt-4">
+                <div class="col-3">
+                    <strong class="text-uppercase">Contacts</strong><br>
+                    Program Director<br> Buster Posey - buster@cityof.gov
+                </div>
+                <div class="col-3">
+                    <strong class="text-uppercase">Phone</strong>
+                    <br>
+                    (555) 123-4562
+                    <p></p>
+                    <strong class="text-uppercase mt-3">Email</strong>
+                    <br>
+                    info@city.gov
+                </div>
+            </div>
+            <hr style="opacity:unset;" class="border-bottom border-1 border-white">
+            <div class="row">
+                <div class="col-12">
+                    Copyright © 2024-2025
+                    <br>
+                    An Official Site of <strong>Government</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Function to extract query parameters from the URL
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            grantID: params.get('grantID'),
+            grantName: params.get('grantName'),
+            agency: params.get('agency'),
+            postedDate: params.get('postedDate'),
+            closeDate: params.get('closeDate'),
+            status: params.get('status') // Capture the status from the URL
+        };
+    }
+
+    // Load grant details from the URL on page load
+    window.onload = function() {
+        const grantDetails = getQueryParams();
+        document.getElementById('grantID').textContent = grantDetails.grantID;
+        document.getElementById('grantName').textContent = grantDetails.grantName;
+        document.getElementById('agencyName').textContent = grantDetails.agency;
+        document.getElementById('postedDate').textContent = grantDetails.postedDate;
+        document.getElementById('closeDate').textContent = grantDetails.closeDate;
+        document.getElementById('grantName_bc').textContent = grantDetails.grantName;
+        document.getElementById('grantName_text').textContent = grantDetails.grantName;
+        document.getElementById('grantName_text2').textContent = grantDetails.grantName;
+        // Display the status in a pill box
+        const statusElement = document.getElementById('grantStatus');
+        if (grantDetails.status === 'Open') {
+            statusElement.innerHTML = `<span class="badge bg-success">${grantDetails.status}</span>`;
+        } else if (grantDetails.status === 'Pending') {
+            statusElement.innerHTML = `<span class="badge bg-warning text-dark">${grantDetails.status}</span>`;
+        } else if (grantDetails.status === 'Closed') {
+            statusElement.innerHTML = `<span class="badge bg-danger">${grantDetails.status}</span>`;
+        }
+
+    };
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
